@@ -39,7 +39,14 @@
                     <td th:text="${course.nameOfCourse}"></td>
                     <td th:text="${course.getTotalQuota()}"></td>
                     <td th:text="${course.getRemainingQuota()}"></td>
-
+                    <td><a class="btn btn-success btn-sm"
+                           th:href="@{'/course/form/' + ${course.getId()}}"
+                           th:text="'enroll'"></a></td>
+                    <td><a class="btn btn-primary btn-sm"
+                           th:href="@{/form/} + ${course.id}" th:text="'Edit'"></a></td>
+                    <td><a class="btn btn-danger btn-sm"
+                           th:href="@{/delete/} + ${course.id}" th:text="'Delete'"
+                           onclick="return confirm('Are you sure you want to delete?');"></a></td>
                 </tr>
                 </tbody>
             </table>
