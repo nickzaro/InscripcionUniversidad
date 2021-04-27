@@ -29,23 +29,29 @@
                 <tr>
                     <th>ID of Course</th>
                     <th>Name of Course</th>
+                    <th>Schedule</th>
                     <th>Total Quota</th>
                     <th>Remaining Quota</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="course: ${listOfCourses}">
-                    <td><a class="btn btn-primary btn-xs" th:href="@{/ver/} + ${course.id}" th:text="'Details'"></a></td>
+                    <td><a class="btn btn-primary btn-xs" th:href="@{'/ver/'+ ${course.getId()}}" th:text="'Details'"></a></td>
                     <td th:text="${course.nameOfCourse}"></td>
+                    <td>
+                        <dl th:each="schedule: ${course.getSchedules()}">
+                            <dd th:text="${schedule.getDayOfWeek().name() +' '+ schedule.getStartTime() +'-'+ schedule.getEndTime()}" ></dd>
+                        </dl>
+                    </td>
                     <td th:text="${course.getTotalQuota()}"></td>
                     <td th:text="${course.getRemainingQuota()}"></td>
                     <td><a class="btn btn-success btn-sm"
                            th:href="@{'/course/form/' + ${course.getId()}}"
                            th:text="'enroll'"></a></td>
                     <td><a class="btn btn-primary btn-sm"
-                           th:href="@{/form/} + ${course.id}" th:text="'Edit'"></a></td>
+                           th:href="@{'/form/'+ ${course.getId()}}" th:text="'Edit'"></a></td>
                     <td><a class="btn btn-danger btn-sm"
-                           th:href="@{/delete/} + ${course.id}" th:text="'Delete'"
+                           th:href="@{'/delete/' + ${course.getId()}}" th:text="'Delete'"
                            onclick="return confirm('Are you sure you want to delete?');"></a></td>
                 </tr>
                 </tbody>
