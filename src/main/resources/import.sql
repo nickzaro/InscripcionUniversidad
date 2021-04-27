@@ -16,3 +16,17 @@ INSERT INTO `schedules`(id,course_id,day_of_week,start_time,end_time) values (5,
 
 INSERT INTO `schedules`(id,course_id,day_of_week,start_time,end_time) values (6,3,0,'12:00:00','14:00:00');
 INSERT INTO `schedules`(id,course_id,day_of_week,start_time,end_time) values (7,3,1,'08:00:00','10:00:00');
+
+/* Estudiantes */
+INSERT INTO `students`(id,dni,first_name,last_name,padron) values (0,'12345678','Pepe','Perez','1234');
+INSERT INTO `students`(id,dni,first_name,last_name,padron) values (1,'87654321','Lola','Mora','8765');
+
+/* student_course*/
+/*estudiante 0, a curso 0,1,2*/
+INSERT INTO `student_course`(student_id,course_id) values (0,0);
+INSERT INTO `student_course`(student_id,course_id) values (0,1);
+INSERT INTO `student_course`(student_id,course_id) values (0,2);
+/*estudiante 1, a curso 1,2,3*/
+INSERT INTO `student_course`(student_id,course_id) values (1,1);
+INSERT INTO `student_course`(student_id,course_id) values (1,2);
+INSERT INTO `student_course`(student_id,course_id) values (1,3);

@@ -1,23 +1,41 @@
 package com.nickzaro.inscripcionuniversidad.student.entity;
 
+import com.nickzaro.inscripcionuniversidad.course.entity.Course;
 import com.nickzaro.inscripcionuniversidad.share.entity.Person;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
+@Table(name = "students")
 public class Student extends Person {
 
-    @Column(name = "student_id")
-    private String studentID;
+    private String padron;
 
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(
+            name = "student_course",
+            joinColumns = {@JoinColumn(name = "student_id")},
+            inverseJoinColumns = {@JoinColumn(name = "course_id")}
+    )
+    private Set<Course> courses;
 
-
-    public String getStudentID() {
-        return studentID;
+    public String getPadron() {
+        return padron;
     }
 
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
+    public void setPadron(String padron) {
+        this.padron = padron;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
     }
 }

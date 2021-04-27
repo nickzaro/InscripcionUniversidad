@@ -1,7 +1,10 @@
 package com.nickzaro.inscripcionuniversidad.course.entity;
 
+import com.nickzaro.inscripcionuniversidad.student.entity.Student;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "courses")
@@ -23,6 +26,9 @@ public class Course {
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     private List<Schedule> schedules;
+
+    @ManyToMany(mappedBy = "courses")
+    private Set<Student> students;
 
     public Long getId() {
         return id;
@@ -62,5 +68,13 @@ public class Course {
 
     public void setSchedules(List<Schedule> schedules) {
         this.schedules = schedules;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
 }
