@@ -1,12 +1,13 @@
 package com.nickzaro.inscripcionuniversidad.student.service;
 
-import com.nickzaro.inscripcionuniversidad.course.entity.Course;
 import com.nickzaro.inscripcionuniversidad.student.entity.Student;
+import org.springframework.http.ResponseEntity;
 
-import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
 public interface IStudentService {
 
     public Student findById(Long id);
+
+    public void removeCourse(Long studentId, Long courseId);
 }

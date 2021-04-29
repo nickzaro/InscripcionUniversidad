@@ -28,6 +28,8 @@ public class CourseServiceImpl implements ICourseService{
         return courseRepository.findOrderAll();
     };
 
+    @Override
+    @Transactional(readOnly = true)
     public Course findById(Long id){
         Optional<Course> courseOptional= courseRepository.findById(id);
         if(courseOptional.isEmpty()){

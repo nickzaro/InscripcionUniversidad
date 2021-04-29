@@ -10,4 +10,6 @@ public interface ICourseService {
     public List<Course> findAll();
 
     public List<Course> findOrderAll();
+
+    public Course findById(Long id);
 }
