@@ -16,6 +16,8 @@ public class Course {
 
     @Column(name = "name_of_course")
     private String nameOfCourse;
+    @Column(name="course_code")
+    private String courseCode;
 
     @Column(name = "total_quota")
     private Integer totalQuota;
@@ -64,6 +66,14 @@ public class Course {
 
     public void setRemainingQuota(Integer remainingQuota) {
         this.remainingQuota = remainingQuota;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 
     public List<Schedule> getSchedules() {

@@ -32,30 +32,25 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>ID of Course</th>
-                    <th>Name of Course</th>
+                    <th>Course Code</th>
+                    <th>Course Name</th>
                     <th>Schedule</th>
                     <th>Professor</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="course: ${CourseList}">
-                    <td><a class="btn btn-primary btn-xs" th:href="@{'/ver/'+ ${course.getId()}}" th:text="'Details'"></a></td>
+                    <td th:text="${course.getCourseCode()}"></td>
                     <td th:text="${course.nameOfCourse}"></td>
                     <td>
                         <dl th:each="schedule: ${course.getSchedules()}">
-                            <dd th:text="${schedule.getDayOfWeek().name() +' '+ schedule.getStartTime() +'-'+ schedule.getEndTime()}" ></dd>
+                            <dd th:text="${#strings.capitalize(schedule.getDayOfWeek().name().toLowerCase()) +' '+ schedule.getStartTime() +'-'+ schedule.getEndTime()}" ></dd>
                         </dl>
                     </td>
                     <td th:text="${course.getProfessor().getFirstName() + ' '+ course.getProfessor().getLastName()}"></td>
-                    <td><a class="btn btn-success btn-sm"
-                           th:href="@{'/course/form/' + ${course.getId()}}"
-                           th:text="'enroll'"></a></td>
-                    <td><a class="btn btn-primary btn-sm"
-                           th:href="@{'/form/'+ ${course.getId()}}" th:text="'Edit'"></a></td>
                     <td><a class="btn btn-danger btn-sm"
-                           th:href="@{'/delete/' + ${course.getId()}}" th:text="'Delete'"
-                           onclick="return confirm('Are you sure you want to delete?');"></a></td>
+                           th:href="@{${student.getId()} +'/delete/' + ${course.getId()}}" th:text="'Unsubscribe'"
+                           onclick="return confirm('Are you sure you want to unsubscribe?');"></a></td>
                 </tr>
                 </tbody>
             </table>
