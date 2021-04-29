@@ -22,7 +22,7 @@ public class CourseController {
     @GetMapping(value = {"/listar","/"})
     public String listar(Model model){
         model.addAttribute("title","List of Courses");
-        model.addAttribute("listOfCourses",courseService.findAll());
+        model.addAttribute("listOfCourses",courseService.findOrderAll());
         return "course/listar";
     }
 

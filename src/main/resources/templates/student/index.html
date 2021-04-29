@@ -40,7 +40,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="course,stats : ${student.getCourses()}">
+                <tr th:each="course: ${CourseList}">
                     <td><a class="btn btn-primary btn-xs" th:href="@{'/ver/'+ ${course.getId()}}" th:text="'Details'"></a></td>
                     <td th:text="${course.nameOfCourse}"></td>
                     <td>
