@@ -1,8 +1,14 @@
+
+/* Profesores */
+INSERT INTO `professors`(id,dni,first_name,last_name,activate) values (0,'00000001','Goku','Son',true);
+INSERT INTO `professors`(id,dni,first_name,last_name,activate) values (1,'11111111','Veggeta','Rey',true);
+INSERT INTO `professors`(id,dni,first_name,last_name,activate) values (2,'22222222','Kame','Sennin',true);
+
 /* Cursos*/
-INSERT INTO `courses`(id,name_of_course,total_quota,remaining_quota) values (0,'Analisis I',50,50);
-INSERT INTO `courses`(id,name_of_course,total_quota,remaining_quota) values (1,'Analisis II',40,40);
-INSERT INTO `courses`(id,name_of_course,total_quota,remaining_quota) values (2,'Algebra I',30,20);
-INSERT INTO `courses`(id,name_of_course,total_quota,remaining_quota) values (3,'Quimica I',30,20);
+INSERT INTO `courses`(id,name_of_course,total_quota,remaining_quota,professor_id) values (0,'Analisis I',50,50,0);
+INSERT INTO `courses`(id,name_of_course,total_quota,remaining_quota,professor_id) values (1,'Analisis II',40,40,2);
+INSERT INTO `courses`(id,name_of_course,total_quota,remaining_quota,professor_id) values (2,'Algebra I',30,20,1);
+INSERT INTO `courses`(id,name_of_course,total_quota,remaining_quota,professor_id) values (3,'Quimica I',30,20,2);
 
 /* Horarios*/
 INSERT INTO `schedules`(id,course_id,day_of_week,start_time,end_time) values (0,0,0,'08:00:00','10:00:00');
@@ -30,3 +36,4 @@ INSERT INTO `student_course`(student_id,course_id) values (0,2);
 INSERT INTO `student_course`(student_id,course_id) values (1,1);
 INSERT INTO `student_course`(student_id,course_id) values (1,2);
 INSERT INTO `student_course`(student_id,course_id) values (1,3);
+

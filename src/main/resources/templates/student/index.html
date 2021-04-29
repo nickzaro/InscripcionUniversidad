@@ -35,8 +35,7 @@
                     <th>ID of Course</th>
                     <th>Name of Course</th>
                     <th>Schedule</th>
-                    <th>Total Quota</th>
-                    <th>Remaining Quota</th>
+                    <th>Professor</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -48,8 +47,7 @@
                             <dd th:text="${schedule.getDayOfWeek().name() +' '+ schedule.getStartTime() +'-'+ schedule.getEndTime()}" ></dd>
                         </dl>
                     </td>
-                    <td th:text="${course.getTotalQuota()}"></td>
-                    <td th:text="${course.getRemainingQuota()}"></td>
+                    <td th:text="${course.getProfessor().getFirstName() + ' '+ course.getProfessor().getLastName()}"></td>
                     <td><a class="btn btn-success btn-sm"
                            th:href="@{'/course/form/' + ${course.getId()}}"
                            th:text="'enroll'"></a></td>

@@ -30,6 +30,10 @@ public class Course {
     @ManyToMany(mappedBy = "courses")
     private Set<Student> students;
 
+    @ManyToOne
+    @JoinColumn(name = "professor_id")
+    private Professor professor;
+
     public Long getId() {
         return id;
     }
@@ -76,5 +80,13 @@ public class Course {
 
     public void setStudents(Set<Student> students) {
         this.students = students;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 }

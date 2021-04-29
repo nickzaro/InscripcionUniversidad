@@ -32,19 +32,22 @@
                     <th>Schedule</th>
                     <th>Total Quota</th>
                     <th>Remaining Quota</th>
+                    <th>Professor</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="course: ${listOfCourses}">
-                    <td><a class="btn btn-primary btn-xs" th:href="@{'/ver/'+ ${course.getId()}}" th:text="'Details'"></a></td>
+                    <td><a class="btn btn-primary btn-xs" th:href="@{'/ver/'+ ${course.getId()}}"
+                           th:text="'Details'"></a></td>
                     <td th:text="${course.nameOfCourse}"></td>
                     <td>
                         <dl th:each="schedule: ${course.getSchedules()}">
-                            <dd th:text="${schedule.getDayOfWeek().name() +' '+ schedule.getStartTime() +'-'+ schedule.getEndTime()}" ></dd>
+                            <dd th:text="${schedule.getDayOfWeek().name() +' '+ schedule.getStartTime() +'-'+ schedule.getEndTime()}"></dd>
                         </dl>
                     </td>
                     <td th:text="${course.getTotalQuota()}"></td>
                     <td th:text="${course.getRemainingQuota()}"></td>
+                    <td th:text="${course.getProfessor().getFirstName() + ' '+ course.getProfessor().getLastName()}"></td>
                     <td><a class="btn btn-success btn-sm"
                            th:href="@{'/course/form/' + ${course.getId()}}"
                            th:text="'enroll'"></a></td>
