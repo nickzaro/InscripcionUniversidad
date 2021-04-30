@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="layout/layout :: head"></head>
+<body>
+    <header th:replace="layout/layout :: header"></header>
+<div class="container py-4">
+    <div class="card bg-light">
+        <div class="card-header" th:text="${title}"></div>
+        <div class="card-body">
+
+            <div class="card-title">
+                <ul class="list-group list-group-horizontal-sm">
+                    <li class="list-group-item" th:text="'First Name: '+ ${student.getFirstName()}"></li>
+                    <li class="list-group-item" th:text="'Last Name: '+ ${student.getLastName()}"></li>
+                    <li class="list-group-item" th:text="'DNI: '+ ${student.getDNI()}"></li>
+                    <li class="list-group-item" th:text="'Padron: '+ ${student.getPadron()}"></li>
+                </ul>
+            </div>
+            <!--TODO: Llamar al formulario de listar los cursos para no repetir código -->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Course Code</th>
+                    <th>Course Name</th>
+                    <th>Schedule</th>
+                    <th>Professor</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="course: ${CourseList}">
+                    <td th:text="${course.getCourseCode()}"></td>
+                    <td th:text="${course.nameOfCourse}"></td>
+                    <td>
+                        <dl th:each="schedule: ${course.getSchedules()}">
+                            <dd th:text="${#strings.capitalize(schedule.getDayOfWeek().name().toLowerCase()) +' '+ schedule.getStartTime() +'-'+ schedule.getEndTime()}" ></dd>
+                        </dl>
+                    </td>
+                    <td th:text="${course.getProfessor().getFirstName() + ' '+ course.getProfessor().getLastName()}"></td>
+                    <td><a class="btn btn-danger btn-sm"
+                           th:href="@{${student.getId()} +'/delete/' + ${course.getId()}}" th:text="'Unsubscribe'"
+                           onclick="return confirm('Are you sure you want to unsubscribe?');"></a></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
