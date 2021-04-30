@@ -39,7 +39,6 @@ public class StudentController {
     @RequestMapping(value = "/{userId}/delete/{courseId}")
     public String deleteCourse(@PathVariable(value ="userId") Long userId,@PathVariable(value = "courseId") long courseId, RedirectAttributes flash){
         if(userId>=0 && courseId >=0){
-            System.out.println("ENTRO");
             studentService.removeCourse(userId,courseId);
             flash.addFlashAttribute("success", "Cliente eliminado con éxito!");
         }
