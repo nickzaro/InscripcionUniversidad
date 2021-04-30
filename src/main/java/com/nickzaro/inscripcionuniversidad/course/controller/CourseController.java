@@ -19,11 +19,11 @@ public class CourseController {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    @GetMapping(value = {"/listar","/"})
+    @GetMapping(value = {"/"})
     public String listar(Model model){
-        model.addAttribute("title","List of Courses");
+        model.addAttribute("title","Course List");
         model.addAttribute("listOfCourses",courseService.findOrderAll());
-        return "course/listar";
+        return "course/index";
     }
 
 }
