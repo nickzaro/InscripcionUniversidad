@@ -1,5 +1,6 @@
-package com.nickzaro.inscripcionuniversidad.course.entity;
+package com.nickzaro.inscripcionuniversidad.professor.entity;
 
+import com.nickzaro.inscripcionuniversidad.course.entity.Course;
 import com.nickzaro.inscripcionuniversidad.share.entity.Person;
 
 import javax.persistence.Column;

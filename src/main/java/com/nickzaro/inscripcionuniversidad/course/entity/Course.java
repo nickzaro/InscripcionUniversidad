@@ -1,5 +1,7 @@
 package com.nickzaro.inscripcionuniversidad.course.entity;
 
+import com.nickzaro.inscripcionuniversidad.professor.entity.Professor;
+import com.nickzaro.inscripcionuniversidad.schedule.entity.Schedule;
 import com.nickzaro.inscripcionuniversidad.student.entity.Student;
 
 import javax.persistence.*;

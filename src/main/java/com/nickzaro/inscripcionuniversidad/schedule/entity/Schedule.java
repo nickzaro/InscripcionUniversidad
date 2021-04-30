@@ -1,6 +1,4 @@
-package com.nickzaro.inscripcionuniversidad.course.entity;
-
-import com.nickzaro.inscripcionuniversidad.course.entity.DayOfWeek;
+package com.nickzaro.inscripcionuniversidad.schedule.entity;
 
 import javax.persistence.*;
 import java.time.LocalTime;
