@@ -2,11 +2,10 @@ package com.nickzaro.inscripcionuniversidad.professor.entity;
 
 import com.nickzaro.inscripcionuniversidad.course.entity.Course;
 import com.nickzaro.inscripcionuniversidad.share.entity.Person;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -16,7 +15,7 @@ public class Professor extends Person {
     @Column(name = "activate")
     private Boolean activate;
 
-    @OneToMany(mappedBy = "professor")
+    @OneToMany(mappedBy = "professor", fetch = FetchType.LAZY)
     private List<Course> courses;
 
     public Boolean getActivate() {
@@ -34,4 +33,19 @@ public class Professor extends Person {
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
+
+    public void updateAttributes(String dni, String firstName, String lastName, Boolean activate){
+        this.setDNI(dni);
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setActivate(activate);
+    }
+
+    @PreRemove
+    public  void onDeleteSetNullCourses(){
+        courses.forEach(course -> {
+            course.setProfessor(null);
+        });
+    }
+
 }
