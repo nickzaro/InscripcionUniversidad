@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container py-4">
+
+  <div class="card bg-dark text-white">
+    <div class="card-header" th:text="${title}"></div>
+    <div class="card-body">
+
+      <div th:object="${professor}" th:remove="tag">
+        <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+          <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+        </ul>
+      </div>
+      <form th:action="@{save/}" th:object="${professor}" method="post" enctype="multipart/form-data">
+        <div class="form-group row">
+          <input type="hidden" th:field="*{id}"/> <!-- para levantar en id pasado en caso de edición-->
+          <label class="col-sm-2 col-form-label">First Name</label>
+          <div class="col-sm-6">
+            <input type="text" th:field="*{firstName}" class="form-control"
+                   th:errorclass="'form-control alert-danger'" /> <small
+                  class="form-text text-danger"
+                  th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Last Name</label>
+          <div class="col-sm-6">
+            <input type="text" th:field="*{lastName}" class="form-control"
+                   th:errorclass="'form-control alert-danger'" /> <small
+                  class="form-text text-danger"
+                  th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">DNI</label>
+          <div class="col-sm-6">
+            <input type="text" th:field="*{DNI}" class="form-control"
+                   th:errorclass="'form-control alert-danger'" /> <small
+                  class="form-text text-danger"
+                  th:if="${#fields.hasErrors('DNI')}" th:errors="*{DNI}"></small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Activate</label>
+          <div class="col-sm-6">
+            <!-- checkbox para Activate-->
+            <input type="checkbox" class="form-control" th:field="*{activate}"
+                   th:errorclass="'form-control alert-danger'" /> <small
+                  class="form-text text-danger"
+                  th:if="${#fields.hasErrors('activate')}" th:errors="*{activate}"></small>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <input type="submit" value="Save Professor" class="btn btn-secondary" />
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

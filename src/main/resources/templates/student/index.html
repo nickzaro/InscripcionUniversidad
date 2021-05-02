@@ -35,7 +35,12 @@
                             <dd th:text="${#strings.capitalize(schedule.getDayOfWeek().name().toLowerCase()) +' '+ schedule.getStartTime() +'-'+ schedule.getEndTime()}" ></dd>
                         </dl>
                     </td>
-                    <td th:text="${course.getProfessor().getFirstName() + ' '+ course.getProfessor().getLastName()}"></td>
+                    <div th:if="${course.getProfessor() != null}">
+                        <td th:text="${course.getProfessor().getFirstName() + ' '+ course.getProfessor().getLastName()}"></td>
+                    </div>
+                    <div th:if="${course.getProfessor() == null}">
+                        <td th:text="'not assigned'"></td>
+                    </div>
                     <td><a class="btn btn-danger btn-sm"
                            th:href="@{${student.getId()} +'/delete/' + ${course.getId()}}" th:text="'Unsubscribe'"
                            onclick="return confirm('Are you sure you want to unsubscribe?');"></a></td>
