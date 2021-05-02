@@ -17,4 +17,8 @@ public interface IProfessorService {
 
     public void remove(Long professorId);
 
+    public void save(Professor professor);
+
+    public Professor createBlankProfessor();
+
 }

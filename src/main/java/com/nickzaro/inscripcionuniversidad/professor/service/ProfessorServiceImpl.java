@@ -53,8 +53,17 @@ public class ProfessorServiceImpl implements IProfessorService{
 
     @Override
     @Transactional
+    public void save(Professor professor){
+        professorRepository.save(professor);
+    }
+
+    @Override
+    @Transactional
     public void remove(Long professorId) {
         professorRepository.deleteById(professorId);
     }
 
+    public Professor createBlankProfessor(){
+        return new Professor();
+    }
 }

@@ -41,6 +41,14 @@ public class Professor extends Person {
         this.setActivate(activate);
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "Professor{" +
+                "activate=" + activate +
+                ", courses=" + courses +
+                '}';
+    }
+
     @PreRemove
     public  void onDeleteSetNullCourses(){
         courses.forEach(course -> {
