@@ -35,7 +35,13 @@
                     </td>
                     <td th:text="${course.getTotalQuota()}"></td>
                     <td th:text="${course.getRemainingQuota()}"></td>
+                    <!--TODO: el tema de cursos sin profesor asignado considerar -->
+                    <div th:if="${course.getProfessor() != null}">
                     <td th:text="${course.getProfessor().getFirstName() + ' '+ course.getProfessor().getLastName()}"></td>
+                    </div>
+                    <div th:if="${course.getProfessor() == null}">
+                        <td th:text="'not assigned'"></td>
+                    </div>
                     <td><a class="btn btn-primary btn-sm"
                            th:href="@{'/form/'+ ${course.getId()}}" th:text="'Edit'"></a></td>
                     <td><a class="btn btn-danger btn-sm"

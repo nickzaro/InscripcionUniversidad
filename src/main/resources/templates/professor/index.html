@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+<div class="container py-4">
+    <div class="card bg-light">
+        <div class="card-header" th:text="${title}"></div>
+        <div class="card-body">
+
+            <h4 class="card-title">
+                <a th:href="@{form/}" class="btn btn-primary">New Professor</a>
+            </h4>
+
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>DNI</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Activate</th>
+                    <th></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="professor: ${professorList}">
+                    <td th:text="${professor.getDNI()}"></td>
+                    <td th:text="${professor.getFirstName()}"></td>
+                    <td th:text="${professor.getLastName()}"></td>
+                    <td th:text="${professor.getActivate()}"></td>
+                    <td><a class="btn btn-primary btn-sm"
+                           th:href="@{'form/'+ ${professor.getId()}}" th:text="'Edit'"></a>
+                        <a class="btn btn-danger btn-sm"
+                           th:href="@{'delete/' + ${professor.getId()}}" th:text="'Delete'"
+                           onclick="return confirm('Are you sure you want to delete?');"></a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

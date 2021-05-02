@@ -47,4 +47,14 @@ public class Person {
     public void setDNI(String DNI) {
         this.DNI = DNI;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", DNI='" + DNI + '\'' +
+                '}';
+    }
 }
