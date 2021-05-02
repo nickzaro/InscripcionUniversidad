@@ -55,5 +55,12 @@ public class ProfessorController {
         return "redirect:/professor/";
         }
 
-
+    @RequestMapping("/form/{professorId}")
+    public String editProfessor(@PathVariable(value = "professorId") long professorId,Model model){
+        //TODO: si el id < 0 o no existe en la bd
+        Professor professor = professorService.findById(professorId);
+        model.addAttribute("professor",professor);
+        model.addAttribute("title","Edit Professor");
+        return "professor/form";
+    }
 }
