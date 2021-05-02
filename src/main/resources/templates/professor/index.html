@@ -30,7 +30,7 @@
                     <td th:text="${professor.getLastName()}"></td>
                     <td th:text="${professor.getActivate()}"></td>
                     <td><a class="btn btn-primary btn-sm"
-                           th:href="@{'/form/'+ ${professor.getId()}}" th:text="'Edit'"></a>
+                           th:href="@{'form/'+ ${professor.getId()}}" th:text="'Edit'"></a>
                         <a class="btn btn-danger btn-sm"
                            th:href="@{'delete/' + ${professor.getId()}}" th:text="'Delete'"
                            onclick="return confirm('Are you sure you want to delete?');"></a>

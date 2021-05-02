@@ -18,6 +18,7 @@
       </div>
       <form th:action="@{save/}" th:object="${professor}" method="post" enctype="multipart/form-data">
         <div class="form-group row">
+          <input type="hidden" th:field="*{id}"/> <!-- para levantar en id pasado en caso de edición-->
           <label class="col-sm-2 col-form-label">First Name</label>
           <div class="col-sm-6">
             <input type="text" th:field="*{firstName}" class="form-control"
@@ -57,7 +58,7 @@
 
         <div class="form-group row">
           <div class="col-sm-6">
-            <input type="submit" value="Create Professor" class="btn btn-secondary" />
+            <input type="submit" value="Save Professor" class="btn btn-secondary" />
           </div>
         </div>
 

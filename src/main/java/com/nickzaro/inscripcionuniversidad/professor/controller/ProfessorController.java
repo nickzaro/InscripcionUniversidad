@@ -44,16 +44,35 @@ public class ProfessorController {
     @RequestMapping("/form")
     public String createProfessor(Model model){
         model.addAttribute("professor",professorService.createBlankProfessor());
-        model.addAttribute("title","Form Professor");
+        model.addAttribute("title","New Professor");
         return "professor/form";
     }
 
     @RequestMapping(value = "/form/save", method = RequestMethod.POST)
     public String save(@Valid Professor professor, BindingResult result, Model model,
                           RedirectAttributes flash, SessionStatus status) {
+        System.out.println(professor);
         professorService.save(professor);
         return "redirect:/professor/";
         }
 
+    @RequestMapping(value = "/form/{professorId}")
+    public String updateProfessor(@PathVariable(value = "professorId") Long professorId,Model model,
+                                  RedirectAttributes flash){
+        Professor professor = null;
+        if(professorId>= 0){
+            professor = professorService.findById(professorId);
+            if(professor==null){
+                flash.addFlashAttribute("Error","professor ID not found");
+                return "redirect:/professor/";
+            }
+        }else {
+            flash.addFlashAttribute("Error","professor ID must be greater than zero");
+            return "redirect:/professor/";
+        }
+        model.addAttribute("professor",professor);
+        model.addAttribute("title","Edit professor");
+        return "professor/form";
+    }
 
 }
