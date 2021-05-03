@@ -34,8 +34,8 @@ public class StudentController {
         model.addAttribute("student",student);
         List<Course>  studentCourses = studentService.coursesInOrder(new ArrayList<>(student.getCourses()));
         List<Course> unregisteredCourses = studentService.courseNoRegistered(student);
-        model.addAttribute("CourseList",studentCourses);
-        model.addAttribute("listOfCourses",unregisteredCourses);
+        model.addAttribute("studentCourses",studentCourses);
+        model.addAttribute("unregisteredCourses",unregisteredCourses);
         model.addAttribute("title","Student Panel");
         return "student/index";
     }

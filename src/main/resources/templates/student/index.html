@@ -27,7 +27,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="course: ${CourseList}">
+                <tr th:each="course: ${studentCourses}">
                     <td th:text="${course.getCourseCode()}"></td>
                     <td th:text="${course.nameOfCourse}"></td>
                     <td>
@@ -64,7 +64,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="course: ${listOfCourses}">
+                <tr th:each="course: ${unregisteredCourses}">
                     <td th:text="${course.getCourseCode()}"></td>
                     <td th:text="${course.nameOfCourse}"></td>
                     <td>
