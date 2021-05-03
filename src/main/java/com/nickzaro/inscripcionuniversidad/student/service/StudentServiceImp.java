@@ -9,7 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentServiceImp implements IStudentService{
@@ -29,15 +33,47 @@ public class StudentServiceImp implements IStudentService{
         return studentOptional.get();
     }
 
-    @Override
+    @Override // se borra la fk mas no el registro de course
     @Transactional // muy importante sino no funciona el método
     public void removeCourse(Long studentId, Long courseId) {
-
         Student student = findById(studentId);
         Course course = courseService.findById(courseId);
-        student.removeCourse(course);
-        //TODO: no persiste los cambios
+        if (course.isSubtractNumberStudents())
+            student.removeCourse(course);
+        else throw new RuntimeException("course cannot be removed");
+    }
 
-         
+    @Override // se borra la fk mas no el registro de course
+    @Transactional // muy importante sino no funciona el método
+    public void addCourse(Long studentId, Long courseId) {
+        Student student = findById(studentId);
+        Course course = courseService.findById(courseId);
+        if (course.isAddNumberStudents())
+            student.addCourse(course);
+        else throw new RuntimeException("course cannot be agregate");
+    }
+
+    @Override
+    public List<Course> courseNoRegistered(Student student) {
+        List<Course> studentCourses = new ArrayList<>(student.getCourses());
+        List<Course> courses= courseService.findAll();
+        List<Course> coursesNR = new ArrayList<>();
+        for (Course c:courses){
+            if( !studentCourses.contains(c))
+                coursesNR.add(c);
+        }
+        return coursesNR;
+    }
+
+    @Override
+    public List<Course> courseNoRegisteredInOrder(Student student){
+        List<Course> courses = courseNoRegistered(student);
+        return coursesInOrder(courses);
+    }
+
+    @Override
+    public List<Course> coursesInOrder(List<Course> courses){
+        return courses.stream().
+                sorted(Comparator.comparing(Course::getNameOfCourse)).collect(Collectors.toList());
     }
 }

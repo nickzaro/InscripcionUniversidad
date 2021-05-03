@@ -18,8 +18,8 @@
                     <th>ID of Course</th>
                     <th>Name of Course</th>
                     <th>Schedule</th>
-                    <th>Total Quota</th>
-                    <th>Remaining Quota</th>
+                    <th>Total Students</th>
+                    <th>Number of Students</th>
                     <th>Professor</th>
                 </tr>
                 </thead>
@@ -33,8 +33,8 @@
                             <dd th:text="${#strings.capitalize(schedule.getDayOfWeek().name().toLowerCase()) +' '+ schedule.getStartTime() +'-'+ schedule.getEndTime()}" ></dd>
                         </dl>
                     </td>
-                    <td th:text="${course.getTotalQuota()}"></td>
-                    <td th:text="${course.getRemainingQuota()}"></td>
+                    <td th:text="${course.getTotalNumberStudents()}"></td>
+                    <td th:text="${course.getNumberStudents()}"></td>
                     <!--TODO: el tema de cursos sin profesor asignado considerar -->
                     <div th:if="${course.getProfessor() != null}">
                     <td th:text="${course.getProfessor().getFirstName() + ' '+ course.getProfessor().getLastName()}"></td>

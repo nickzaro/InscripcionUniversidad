@@ -21,11 +21,11 @@ public class Course {
     @Column(name="course_code")
     private String courseCode;
 
-    @Column(name = "total_quota")
-    private Integer totalQuota;
+    @Column(name = "total_number_students")
+    private Integer totalNumberStudents;
 
-    @Column(name = "remaining_quota")
-    private Integer remainingQuota;
+    @Column(name = "number_students")
+    private Integer numberStudents;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
@@ -54,20 +54,40 @@ public class Course {
         this.nameOfCourse = nameOfCourse;
     }
 
-    public Integer getTotalQuota() {
-        return totalQuota;
+    public Integer getTotalNumberStudents() {
+        return totalNumberStudents;
     }
 
-    public void setTotalQuota(Integer totalQuota) {
-        this.totalQuota = totalQuota;
+    public void setTotalNumberStudents(Integer totalQuota) {
+        this.totalNumberStudents = totalQuota;
     }
 
-    public Integer getRemainingQuota() {
-        return remainingQuota;
+    public Integer getNumberStudents() {
+        return numberStudents;
     }
 
-    public void setRemainingQuota(Integer remainingQuota) {
-        this.remainingQuota = remainingQuota;
+    public void setNumberStudents(Integer remainingQuota) {
+        this.numberStudents = remainingQuota;
+    }
+
+    public Boolean isAddNumberStudents(){
+        return numberStudents < totalNumberStudents;
+    }
+    public Boolean isSubtractNumberStudents(){
+        return numberStudents > 0;
+    }
+    public Boolean addNumberStudents(){
+        Boolean result= isAddNumberStudents();
+        if (result)
+            numberStudents++;
+        return result;
+    }
+
+    public Boolean subtractNumberStudents(){
+        Boolean result = isSubtractNumberStudents();
+        if(result)
+            numberStudents--;
+        return result;
     }
 
     public String getCourseCode() {
