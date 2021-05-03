@@ -37,6 +37,7 @@ public class StudentController {
         model.addAttribute("studentCourses",studentCourses);
         model.addAttribute("unregisteredCourses",unregisteredCourses);
         model.addAttribute("title","Student Panel");
+        model.addAttribute("coursesAvailable","Courses Available");
         return "student/index";
     }
     @RequestMapping(value = "/{studentId}/unsubscribe/{courseId}")
