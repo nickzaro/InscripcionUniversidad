@@ -14,6 +14,10 @@
                     <li class="list-group-item" th:text="'Last Name: '+ ${student.getLastName()}"></li>
                     <li class="list-group-item" th:text="'DNI: '+ ${student.getDNI()}"></li>
                     <li class="list-group-item" th:text="'Padron: '+ ${student.getPadron()}"></li>
+                    <li class="list-group-item">
+                        <a class="btn btn-primary btn-sm"
+                           th:href="@{${student.getId()} +'/course/'}" th:text="'Courses Available'"></a>
+                    </li>
                 </ul>
             </div>
             <!--TODO: Llamar al formulario de listar los cursos para no repetir código -->

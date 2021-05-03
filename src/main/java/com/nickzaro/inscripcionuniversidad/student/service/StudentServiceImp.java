@@ -29,15 +29,24 @@ public class StudentServiceImp implements IStudentService{
         return studentOptional.get();
     }
 
-    @Override
+    @Override // se borra la fk mas no el registro de course
     @Transactional // muy importante sino no funciona el método
     public void removeCourse(Long studentId, Long courseId) {
-
         Student student = findById(studentId);
         Course course = courseService.findById(courseId);
-        student.removeCourse(course);
-        //TODO: no persiste los cambios
-
-         
+        if (course.isSubtractNumberStudents())
+            student.removeCourse(course);
+        else throw new RuntimeException("course cannot be removed");
     }
+
+    @Override // se borra la fk mas no el registro de course
+    @Transactional // muy importante sino no funciona el método
+    public void addCourse(Long studentId, Long courseId) {
+        Student student = findById(studentId);
+        Course course = courseService.findById(courseId);
+        if (course.isAddNumberStudents())
+            student.addCourse(course);
+        else throw new RuntimeException("course cannot be removed");
+    }
+
 }

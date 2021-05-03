@@ -38,6 +38,13 @@ public class Student extends Person {
 
     public void removeCourse(Course course){
         courses.remove(course);
+        course.subtractNumberStudents();
         course.getStudents().remove(this);
+    }
+
+    public void addCourse(Course course){
+        courses.add(course);
+        course.addNumberStudents();
+        course.getStudents().add(this);
     }
 }

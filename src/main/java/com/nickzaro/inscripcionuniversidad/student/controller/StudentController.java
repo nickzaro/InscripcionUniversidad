@@ -28,7 +28,7 @@ public class StudentController {
     @GetMapping("/{id}")
     public String index(@PathVariable(value = "id") Long id, Model model){
         Student student = studentService.findById(id);
-        //TODO: implementar el tema de student null
+        //TODO: implementar el tema de student null y mover el sorted al studentService.
         model.addAttribute("student",student);
         List<Course> courseList= student.getCourses().stream().
                 sorted(Comparator.comparing(Course::getNameOfCourse)).collect(Collectors.toList());

@@ -10,4 +10,6 @@ public interface IStudentService {
     public Student findById(Long id);
 
     public void removeCourse(Long studentId, Long courseId);
+
+    public void addCourse(Long studentId, Long courseId);
 }
