@@ -5,6 +5,7 @@ import com.nickzaro.inscripcionuniversidad.schedule.entity.Schedule;
 import com.nickzaro.inscripcionuniversidad.student.entity.Student;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -27,13 +28,17 @@ public class Course {
     @Column(name = "number_students")
     private Integer numberStudents;
 
+    // si se elimina un curso, se eliminan los horarios del curso
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     private List<Schedule> schedules;
 
+    // si se elimina un curso, se eliminan antes la referencias con student
     @ManyToMany(mappedBy = "courses")
     private Set<Student> students;
 
+    // si se elimina un curso,
+    // se eliminan la referencia a profesor student (esta en la misma tabla, con eliminar el registro alcanza)
     @ManyToOne
     @JoinColumn(name = "professor_id")
     private Professor professor;
@@ -120,5 +125,14 @@ public class Course {
 
     public void setProfessor(Professor professor) {
         this.professor = professor;
+    }
+
+    //TODO: rompe el curso a pesar de todo
+    @PreRemove
+    public void removeStudents(){
+        //this.getStudents().forEach(student -> student.removeCourse(this));
+        for (Student s: students){
+            s.getCourses().remove(this);
+        }
     }
 }

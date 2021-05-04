@@ -12,4 +12,6 @@ public interface ICourseService {
     public List<Course> findOrderAll();
 
     public Course findById(Long id);
+
+    public void removeCourse(Long courseId);
 }
