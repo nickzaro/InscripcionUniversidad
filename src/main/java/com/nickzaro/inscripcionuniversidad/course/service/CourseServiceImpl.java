@@ -2,10 +2,7 @@ package com.nickzaro.inscripcionuniversidad.course.service;
 
 import com.nickzaro.inscripcionuniversidad.course.entity.Course;
 import com.nickzaro.inscripcionuniversidad.course.repository.ICourseRepository;
-import com.nickzaro.inscripcionuniversidad.student.entity.Student;
-import com.nickzaro.inscripcionuniversidad.student.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,4 +44,16 @@ public class CourseServiceImpl implements ICourseService{
         // course.removeStudents();
         courseRepository.delete(course);
     }
+
+    @Override
+    public Course createBlankCourse() {
+        return new Course();
+    }
+
+    @Override
+    public Long save(Course course) {
+        courseRepository.save(course);
+        return course.getId();
+    }
+
 }

@@ -9,17 +9,17 @@
         <div class="card-body">
 
             <h4 class="card-title">
-                <a th:href="@{/form}" class="btn btn-primary">New course</a>
+                <a th:href="@{form/}" class="btn btn-primary">New course</a>
             </h4>
 
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>ID of Course</th>
-                    <th>Name of Course</th>
+                    <th>Course Name</th>
                     <th>Schedule</th>
                     <th>Total Students</th>
-                    <th>Number of Students</th>
+                    <th>Students Number</th>
                     <th>Professor</th>
                 </tr>
                 </thead>
@@ -27,7 +27,7 @@
                 <tr th:each="course: ${listOfCourses}">
                     <td><a class="btn btn-primary btn-xs" th:href="@{'/ver/'+ ${course.getId()}}"
                            th:text="'Details'"></a></td>
-                    <td th:text="${course.nameOfCourse}"></td>
+                    <td th:text="${course.courseName}"></td>
                     <td>
                         <dl th:each="schedule: ${course.getSchedules()}">
                             <dd th:text="${#strings.capitalize(schedule.getDayOfWeek().name().toLowerCase()) +' '+ schedule.getStartTime() +'-'+ schedule.getEndTime()}" ></dd>

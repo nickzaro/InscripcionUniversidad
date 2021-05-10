@@ -1,7 +1,7 @@
 package com.nickzaro.inscripcionuniversidad.course.service;
 
 import com.nickzaro.inscripcionuniversidad.course.entity.Course;
-import org.springframework.data.jpa.repository.Query;
+import com.nickzaro.inscripcionuniversidad.professor.entity.Professor;
 
 import java.util.List;
 
@@ -14,4 +14,8 @@ public interface ICourseService {
     public Course findById(Long id);
 
     public void removeCourse(Long courseId);
+
+    public Course createBlankCourse();
+
+    Long save(Course course);
 }

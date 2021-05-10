@@ -43,7 +43,8 @@ public class Professor extends Person {
 
     @Override
     public String toString() {
-        return super.toString() + "Professor{" +
+        return "Professor{" +
+                "person=" + super.toString() +
                 "activate=" + activate +
                 ", courses=" + courses +
                 '}';

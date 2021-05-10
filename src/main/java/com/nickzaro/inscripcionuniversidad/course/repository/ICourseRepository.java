@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ICourseRepository extends JpaRepository<Course,Long> {
 
-    @Query(value = "SELECT c from Course c order by c.nameOfCourse")
+    @Query(value = "SELECT c from Course c order by c.courseName")
     public List<Course> findOrderAll();
 }

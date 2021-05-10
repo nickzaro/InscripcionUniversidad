@@ -17,8 +17,8 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name_of_course")
-    private String nameOfCourse;
+    @Column(name = "course_name")
+    private String courseName;
     @Column(name="course_code")
     private String courseCode;
 
@@ -31,7 +31,7 @@ public class Course {
     // si se elimina un curso, se eliminan los horarios del curso
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
-    private List<Schedule> schedules;
+    private List<Schedule> schedules = new ArrayList<>();
 
     // si se elimina un curso, se eliminan antes la referencias con student
     @ManyToMany(mappedBy = "courses")
@@ -51,12 +51,12 @@ public class Course {
         this.id = id;
     }
 
-    public String getNameOfCourse() {
-        return nameOfCourse;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public void setNameOfCourse(String nameOfCourse) {
-        this.nameOfCourse = nameOfCourse;
+    public void setCourseName(String nameOfCourse) {
+        this.courseName = nameOfCourse;
     }
 
     public Integer getTotalNumberStudents() {
@@ -127,12 +127,25 @@ public class Course {
         this.professor = professor;
     }
 
-    //TODO: rompe el curso a pesar de todo
     @PreRemove
     public void removeStudents(){
         //this.getStudents().forEach(student -> student.removeCourse(this));
         for (Student s: students){
             s.getCourses().remove(this);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", courseName='" + courseName + '\'' +
+                ", courseCode='" + courseCode + '\'' +
+                ", totalNumberStudents=" + totalNumberStudents +
+                ", numberStudents=" + numberStudents +
+                // ", schedules=" + schedules +
+                // ", students=" + students +
+              // ", professor=" + professor.toString() +
+                '}';
     }
 }

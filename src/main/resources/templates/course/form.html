@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container py-4">
+
+    <div class="card bg-dark text-white">
+        <div class="card-header" th:text="${title}"></div>
+        <div class="card-body">
+
+            <div th:object="${course}" th:remove="tag">
+                <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                    <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+                </ul>
+            </div>
+            <form th:action="@{save/}" th:object="${course}" method="post" enctype="multipart/form-data">
+                <div class="form-group row">
+                    <input type="hidden" th:field="*{id}"/> <!-- para levantar en id pasado en caso de edición-->
+                    <label class="col-sm-2 col-form-label">Course Code</label>
+                    <div class="col-sm-1">
+                        <input type="text" th:field="*{courseCode}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('courseCode')}" th:errors="*{courseCode}"></small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Course Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" th:field="*{courseName}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('courseName')}" th:errors="*{courseName}"></small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Total Students</label>
+                    <div class="col-sm-3">
+                        <input type="text" th:field="*{totalNumberStudents}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('totalNumberStudents')}"
+                            th:errors="*{totalNumberStudents}"></small>
+                    </div>
+                    <label class="col-sm-2 col-form-label">Number Students</label>
+                    <div class="col-sm-3">
+                        <input type="text" th:field="*{numberStudents}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('numberStudents')}" th:errors="*{numberStudents}"></small>
+                    </div>
+                </div>
+                <tr></tr>
+                <!-- TODO: igual para horario-->
+
+
+                <!--TODO: agregar la tabla de los horarios
+                https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#dynamic-fields
+                -->
+
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="submit" value="Save Course" class="btn btn-secondary"/>
+                    </div>
+                </div>
+                <tr></tr>
+
+                <div class="form-group row" th:if="${course.getId()!=null}">
+                    <label>Rows</label>
+                    <br/>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Row</th>
+                            <th>Day of week</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>
+                                <button type="submit" name="addRow" >Add row</button>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="row,rowStat : *{schedules}">
+                            <input type="hidden" th:field="*{schedules[__${rowStat.index}__].id}"/> <!-- para levantar en id pasado en caso de edición-->
+                            <td th:text="${rowStat.count}">1</td>
+                            <td>
+                                <!--TODO: un option seria para levantar todos los dias de semana -->
+                                <select th:field="*{schedules[__${rowStat.index}__].dayOfWeek}">
+                                    <option th:each="day : ${allDays}" th:value="${day}" th:text="${day.name()}">Wireframe</option>
+                                </select>
+                                <!--<input type="text" th:field="*{schedules[__${rowStat.index}__].dayOfWeek}"/> -->
+                            </td>
+                            <td>
+                                <!--TODO: El tema de la hora, tambien se tendria que hacer con options -->
+                                <input type="text" th:field="*{schedules[__${rowStat.index}__].startTime}"/>
+                            </td>
+                            <td>
+                                <input type="text" th:field="*{schedules[__${rowStat.index}__].endTime}"/>
+                            </td>
+                            <td>
+                                <button type="submit" name="removeRow"
+                                        th:value="${rowStat.index}">Remove row
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+    <footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

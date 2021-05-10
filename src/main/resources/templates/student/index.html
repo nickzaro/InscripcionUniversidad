@@ -29,7 +29,7 @@
                 <tbody>
                 <tr th:each="course: ${studentCourses}">
                     <td th:text="${course.getCourseCode()}"></td>
-                    <td th:text="${course.nameOfCourse}"></td>
+                    <td th:text="${course.courseName}"></td>
                     <td>
                         <dl th:each="schedule: ${course.getSchedules()}">
                             <dd th:text="${#strings.capitalize(schedule.getDayOfWeek().name().toLowerCase()) +' '+ schedule.getStartTime() +'-'+ schedule.getEndTime()}" ></dd>
@@ -66,7 +66,7 @@
                 <tbody>
                 <tr th:each="course: ${unregisteredCourses}">
                     <td th:text="${course.getCourseCode()}"></td>
-                    <td th:text="${course.nameOfCourse}"></td>
+                    <td th:text="${course.courseName}"></td>
                     <td>
                         <dl th:each="schedule: ${course.getSchedules()}">
                             <dd th:text="${#strings.capitalize(schedule.getDayOfWeek().name().toLowerCase()) +' '+ schedule.getStartTime() +'-'+ schedule.getEndTime()}" ></dd>

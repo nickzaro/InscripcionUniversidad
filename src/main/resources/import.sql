@@ -5,10 +5,10 @@ INSERT INTO `professors`(id,dni,first_name,last_name,activate) values (1,'111111
 INSERT INTO `professors`(id,dni,first_name,last_name,activate) values (2,'22222222','Kame','Sennin',true);
 
 /* Cursos*/
-INSERT INTO `courses`(id,course_code,name_of_course,total_number_students,number_students,professor_id) values (0,'75.15','Base de Datos',50,50,0);
-INSERT INTO `courses`(id,course_code,name_of_course,total_number_students,number_students,professor_id) values (1,'75.23','Inteligencia Artificial',40,40,2);
-INSERT INTO `courses`(id,course_code,name_of_course,total_number_students,number_students,professor_id) values (2,'75.42','Taller de Programación I',30,20,1);
-INSERT INTO `courses`(id,course_code,name_of_course,total_number_students,number_students,professor_id) values (3,'75.43','Introd. a los Sistemas Distribuidos',30,20,2);
+INSERT INTO `courses`(id,course_code,course_name,total_number_students,number_students,professor_id) values (0,'75.15','Base de Datos',50,50,0);
+INSERT INTO `courses`(id,course_code,course_name,total_number_students,number_students,professor_id) values (1,'75.23','Inteligencia Artificial',40,40,2);
+INSERT INTO `courses`(id,course_code,course_name,total_number_students,number_students,professor_id) values (2,'75.42','Taller de Programación I',30,20,1);
+INSERT INTO `courses`(id,course_code,course_name,total_number_students,number_students,professor_id) values (3,'75.43','Introd. a los Sistemas Distribuidos',30,20,2);
 
 /* Horarios*/
 INSERT INTO `schedules`(id,course_id,day_of_week,start_time,end_time) values (0,0,0,'08:00:00','10:00:00');

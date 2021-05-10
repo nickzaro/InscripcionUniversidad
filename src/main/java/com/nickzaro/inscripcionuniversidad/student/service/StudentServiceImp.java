@@ -1,7 +1,6 @@
 package com.nickzaro.inscripcionuniversidad.student.service;
 
 import com.nickzaro.inscripcionuniversidad.course.entity.Course;
-import com.nickzaro.inscripcionuniversidad.course.repository.ICourseRepository;
 import com.nickzaro.inscripcionuniversidad.course.service.ICourseService;
 import com.nickzaro.inscripcionuniversidad.student.entity.Student;
 import com.nickzaro.inscripcionuniversidad.student.repository.IStudentRepository;
@@ -74,6 +73,6 @@ public class StudentServiceImp implements IStudentService{
     @Override
     public List<Course> coursesInOrder(List<Course> courses){
         return courses.stream().
-                sorted(Comparator.comparing(Course::getNameOfCourse)).collect(Collectors.toList());
+                sorted(Comparator.comparing(Course::getCourseName)).collect(Collectors.toList());
     }
 }
